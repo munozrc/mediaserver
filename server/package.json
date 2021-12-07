@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "lint": "npm run lint",
+    "start": "node src/index.js"
+  },
+  "author": "munozrc",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "2.0.15",
+    "standard": "16.0.4"
+  },
+  "dependencies": {
+    "express": "4.17.1"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
+  }
+}
