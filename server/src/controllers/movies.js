@@ -1,13 +1,15 @@
 const fs = require('fs')
 const router = require('express').Router()
-const moviesList = require('../data/movies.json')
+const { getConfigFile } = require('../utils/files')
 
 router.get('/', (_req, res) => {
+  const moviesList = getConfigFile('../data/movies.json')
   res.send({ movies: moviesList })
 })
 
 router.get('/:id', (req, res) => {
   const { id } = req.params
+  const moviesList = getConfigFile('../data/movies.json')
   const findMovie = moviesList.find(movie => movie.id === id)
 
   if (typeof findMovie === 'undefined') return res.send({ message: 'movie not found' })
