@@ -1,3 +1,6 @@
 node_modules
 package-lock.json
 .env
+
+# User data files
+server/src/data
