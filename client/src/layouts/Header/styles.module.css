@@ -6,3 +6,13 @@
 .logo {
   color: #fafafa;
 }
+
+@media (max-width: 500px) {
+  .wrapper {
+    padding: 20px 0;
+  }
+
+  .logo {
+    font-size: 1.7em;
+  }
+}

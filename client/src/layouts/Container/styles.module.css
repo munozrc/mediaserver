@@ -9,4 +9,11 @@
   width: 100%;
   height: 100%;
   max-width: 1200px;
+  padding: 0 50px 50px 50px;
+}
+
+@media (max-width: 500px) {
+  .children {
+    padding: 0px 20px 20px 20px;
+  }
 }
