@@ -1,0 +1,13 @@
+.wrapper {
+  display: grid;
+  list-style-type: none;
+  grid-gap: 16px;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+@media (max-width: 500px) {
+  .wrapper {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
