@@ -1,10 +1,13 @@
-import styles from './styles/styles.module.css'
+import Home from './pages/Home'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
   return (
-    <div className={styles.wrapper}>
-      <h1 className={styles.title}>Media Server</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
