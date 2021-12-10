@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom'
 import useMedia from '../../hooks/useMedia'
 import Container from '../../layouts/Container'
 import GridContainer from '../../layouts/GridContainer'
@@ -9,17 +10,18 @@ const Home = () => {
   return (
     <Container>
       <Header />
+      <Outlet />
       <GridContainer>
         {
-          media.movies.map(movie => (
-            <Card
-              key={movie.id}
-              id={movie.id}
-              image={movie.poster}
-              title={movie.title}
-            />
-          ))
-        }
+            media.movies.map(movie => (
+              <Card
+                key={movie.id}
+                id={movie.id}
+                image={movie.poster}
+                title={movie.title}
+              />
+            ))
+          }
       </GridContainer>
     </Container>
   )
