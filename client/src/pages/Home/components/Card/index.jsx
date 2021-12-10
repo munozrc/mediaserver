@@ -9,7 +9,6 @@ const Card = ({ title, image, id }) => {
         <img className={styles.image} src={image} alt={title} />
         <RiPlayFill className={styles.play} color='#fafafa' size='5em' />
       </div>
-      <h3 className={styles.title}>{title}</h3>
     </Link>
   )
 }
