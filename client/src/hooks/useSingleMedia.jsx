@@ -8,7 +8,7 @@ export default function useSingleMedia ({ id }) {
   useEffect(() => {
     const find = media.movies.find(ele => ele.id === id)
     setActiveMedia(typeof find !== 'undefined' ? find : null)
-  }, [media])
+  }, [media, id])
 
   return { activeMedia }
 }
