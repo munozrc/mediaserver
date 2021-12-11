@@ -1,5 +1,5 @@
 import VideoPlayer from '../VideoPlayer'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getSourceVideo } from '../../services/movies'
 import useSingleMedia from '../../hooks/useSingleMedia'
 import Modal from '../../layouts/Modal'
@@ -21,7 +21,7 @@ const MovieDetail = () => {
           <div className={styles.wrapperInfo}>
             <h1 className={styles.title}>{activeMedia.title}</h1>
           </div>
-          <button className={styles.btnClose}><RiCloseFill /></button>
+          <Link className={styles.btnClose} to='/'><RiCloseFill /></Link>
         </header>
         <footer className={styles.footer}>
           <div className={styles.videoPlayer}>

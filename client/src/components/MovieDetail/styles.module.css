@@ -84,6 +84,7 @@
 
 .btnClose svg {
   font-size: 30px;
+  color: #fafafa;
 }
 
 .btnClose:hover {
