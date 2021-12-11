@@ -1,0 +1,14 @@
+.wrapper {
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #000;
+  box-shadow: 0px 0px 0px 3px #121212;
+}
+
+.videoPlayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
