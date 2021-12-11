@@ -8,4 +8,6 @@ const getMovies = async () => {
   })
 }
 
-export { getMovies }
+const getSourceVideo = ({ id }) => `${API_URL}/movies/${id}`
+
+export { getMovies, getSourceVideo }
