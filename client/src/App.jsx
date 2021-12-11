@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { MediaContextProvider } from './context/mediaContext'
 import Home from './pages/Home'
-import ContentDetail from './pages/Home/components/ContentDetail'
+import MovieDetail from './components/MovieDetail'
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <MediaContextProvider>
         <Routes>
           <Route path='/' element={<Home />}>
-            <Route path='/detail/:id' element={<ContentDetail />} />
+            <Route path='/detail/:id' element={<MovieDetail />} />
           </Route>
         </Routes>
       </MediaContextProvider>
