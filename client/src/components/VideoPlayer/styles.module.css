@@ -12,3 +12,15 @@
   top: 0;
   left: 0;
 }
+
+.videoPlayer > video::cue {
+  opacity: 1;
+  background-color: transparent;
+  font-family: 'LatoBlack';
+  text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+}
+
+.videoPlayer > video::-webkit-media-text-track-container {
+  transform: translateY(-14%);
+  position: relative;
+}
