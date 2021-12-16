@@ -9,5 +9,6 @@ const getMovies = async () => {
 }
 
 const getSourceVideo = ({ id }) => `${API_URL}/movies/${id}`
+const getSubtitlesVideo = ({ id }) => `${API_URL}/movies/subtitles/${id}`
 
-export { getMovies, getSourceVideo }
+export { getMovies, getSourceVideo, getSubtitlesVideo }
