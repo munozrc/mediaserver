@@ -10,7 +10,8 @@ Example ``data`` for ***movies***:
     "gif": "https://example.gif",
     "title": "Title for the movie",
     "source": "D:\\Movies\\example.mkv",
-    "synopsis": ""
+    "synopsis": "",
+    "subtitles": "D:\\Movies\\example.vtt",
   },
 ]
 ````
