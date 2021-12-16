@@ -106,3 +106,28 @@
   margin-bottom: 12px;
   line-height: 0.8;
 }
+
+@media (max-width: 500px) {
+  .footer {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .wrapperInfo {
+    padding: 50px 0px;
+  }
+  
+  .title {
+    font-size: 2.3em;
+    margin-bottom: 0;
+  }
+
+  .synopsis {
+    margin-left: 0;
+  }
+
+  .btnClose {
+    top: 26px;
+    right: 12px;
+  }
+}
