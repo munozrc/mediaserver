@@ -32,3 +32,20 @@ button {
 a {
   text-decoration: none;
 }
+
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #15181d;
+  border: 0 #fff;
+  border-radius: 2px;
+}
+
+body::-webkit-scrollbar-track {
+  border: 0 #fff;
+  border-radius: 0;
+  background: rgba(0,0,0,.12);;
+}
