@@ -25,7 +25,7 @@ const MovieDetail = () => {
         </header>
         <footer className={styles.footer}>
           <div className={styles.videoPlayer}>
-            <VideoPlayer source={getSourceVideo({ id })} subtitles={getSubtitlesVideo({ id })} />
+            <VideoPlayer source={getSourceVideo({ id })} subtitles={activeMedia.subtitles ? getSubtitlesVideo({ id }) : ''} />
           </div>
           <p className={styles.synopsis}>
             <strong className={styles.subtitle}>Sinopsis</strong>
