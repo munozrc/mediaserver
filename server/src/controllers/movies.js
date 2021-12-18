@@ -1,10 +1,12 @@
 const fs = require('fs')
 const router = require('express').Router()
+const { normalizeMovies } = require('../utils')
 const { getConfigFile } = require('../utils/files')
 
 router.get('/', (_req, res) => {
-  const moviesList = getConfigFile('../data/movies.json')
-  res.send({ movies: moviesList })
+  const list = getConfigFile('../data/movies.json')
+  const movies = list.map(normalizeMovies)
+  res.send({ movies })
 })
 
 router.get('/:id', (req, res) => {
