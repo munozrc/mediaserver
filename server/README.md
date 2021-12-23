@@ -9,7 +9,7 @@ Example ``data`` for ***movies***:
     "title": "Title for the movie",
     "year": "2001",
     "imdbRating": 6.8,
-    "genre":"Acción/Crimen",
+    "genre": "Acción/Crimen",
     "synopsis": "",
     "poster": "https://example-poster.jpg",
     "images": [
