@@ -40,6 +40,7 @@ Example ``data`` for ***series***:
     "id": "4f0de6fb-d40a-414d-9b3e-5ec144d943ff", // uuidv4
     "title": "Title for the serie",
     "year": "2019",
+    "season": 1,
     "imdbRating": 6.8,
     "genre": "Acción/Aventura/Drama",
     "synopsis": "",
@@ -49,23 +50,17 @@ Example ``data`` for ***series***:
       "https://example-2.jpg",
       "https://example-3.jpg"
     ],
-    "seasons": [
+    "episodes": [
       {
-        "season": 1,
-        "year": "2019",
-        "episodes": [
+        "episode": 1,
+        "title": "Title for episode",
+        "sources": [
           {
-            "episode": 1,
-            "title": "Title for episode",
-            "sources": [
-              {
-                "path": "D:\\Series\\example.mkv",
-                "subtitles": [
-                  { 
-                    "src": "D:\\Series\\example.vtt",
-                    "srcLang": "es"
-                  }
-                ]
+            "path": "D:\\Series\\example.mkv",
+            "subtitles": [
+              { 
+                "src": "D:\\Series\\example.vtt",
+                "srcLang": "es"
               }
             ]
           }
