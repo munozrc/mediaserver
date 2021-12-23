@@ -1,9 +1,20 @@
 const normalizeMovies = (movie) => {
-  const { id, poster, gif, title, synopsis, subtitles } = movie
-  const obj = { id, poster, gif, title, synopsis }
+  const { sources } = movie
+  const newSources = sources.map(normalizeSources)
 
-  if (subtitles !== '') return { ...obj, subtitles: true }
-  return { ...obj, subtitles: false }
+  return { ...movie, sources: newSources }
+}
+
+const normalizeSources = (source, index) => {
+  const { subtitles } = source
+  const newSubtitles = subtitles.map(normalizeSubtitles)
+
+  return { id: index, subtitles: newSubtitles }
+}
+
+const normalizeSubtitles = (subtitle) => {
+  const { srcLang } = subtitle
+  return srcLang
 }
 
 module.exports = { normalizeMovies }
