@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react'
-import MediaContext from '../context/mediaContext'
+import { useEffect, useState } from 'react'
+import useMedia from './useMedia'
 
 export default function useSingleMedia ({ id }) {
-  const { media } = useContext(MediaContext)
+  const { media } = useMedia()
   const [activeMedia, setActiveMedia] = useState(null)
 
   useEffect(() => {
