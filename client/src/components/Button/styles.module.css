@@ -1,0 +1,31 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 44px;
+  max-height: 44px;
+  padding: 0 16px;
+  font-size: 1.2em;
+  gap: 8px;
+}
+
+.primary {
+  background-color: #CF3030;
+  transition: background-color .3s ease;
+}
+
+.primary:hover {
+  background-color: #FD4848;
+}
+
+.outline {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 2px #fafafa;
+  color: #fafafa;
+  transition: background-color .3s ease;
+}
+
+.outline:hover {
+  background-color: #303030;
+}
