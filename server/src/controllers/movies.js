@@ -3,29 +3,6 @@ const router = require('express').Router()
 const { normalizeMovie } = require('../utils')
 const { getConfigFile } = require('../utils/files')
 
-router.get('/subtitles', (req, res) => {
-  const { protocol, hostname, query } = req
-  const { id, source } = query
-
-  const moviesList = getConfigFile('../data/movies.json')
-  const movie = moviesList.find(movie => movie.id === id)
-  if (typeof movie === 'undefined') return res.send({})
-
-  const subtitles = movie.sources[parseInt(source)].subtitles.map((subtitle) => {
-    const src = `${protocol}://${hostname}:${process.env.PORT || 3001}/api/movies/subtitle?id=${id}&source=${0}&lang=${subtitle.srcLang}`
-    return {
-      kind: 'subtitles',
-      src,
-      srcLang: subtitle.srcLang,
-      default: subtitle.default || false
-    }
-  })
-
-  if (typeof subtitles === 'undefined') return res.send({})
-
-  res.send(subtitles)
-})
-
 router.get('/subtitle', (req, res) => {
   const { id, source, lang } = req.query
   const moviesList = getConfigFile('../data/movies.json')

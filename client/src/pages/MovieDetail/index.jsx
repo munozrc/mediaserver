@@ -11,7 +11,7 @@ import VideoPlayer from '../../components/VideoPlayer'
 
 const MovieDetail = () => {
   const { id } = useParams()
-  const { movie, source } = useMovie({ id })
+  const { movie, source, subtitles } = useMovie({ id })
   const [showVideoPlayer, setShowVideoPlayer] = useState(false)
 
   return (
@@ -36,7 +36,7 @@ const MovieDetail = () => {
         (movie && showVideoPlayer) && (
           <VideoPlayer
             source={source}
-            subtitles={movie.subtitles}
+            subtitles={subtitles}
           />
         )
       }
