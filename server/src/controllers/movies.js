@@ -1,5 +1,6 @@
 const fs = require('fs')
 const router = require('express').Router()
+const { normalizeMovie } = require('../utils')
 const { getConfigFile } = require('../utils/files')
 
 router.get('/subtitles', (req, res) => {
@@ -69,12 +70,12 @@ router.get('/:id', (req, res) => {
   }
 })
 
-router.get('/', (_req, res) => {
+router.get('/', (req, res) => {
+  const { protocol, hostname } = req
   const list = getConfigFile('../data/movies.json')
-  const movies = list.map((movie) => {
-    delete movie.sources
-    return movie
-  })
+
+  const originURL = `${protocol}://${hostname}:${process.env.PORT || 3001}/api`
+  const movies = list.map((movie) => normalizeMovie({ movie, originURL }))
   res.send({ movies })
 })
 
