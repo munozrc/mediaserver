@@ -8,7 +8,14 @@ const getMovies = async () => {
   })
 }
 
-const getSourceVideo = ({ id }) => `${API_URL}/movies/${id}`
-const getSubtitlesVideo = ({ id }) => `${API_URL}/movies/subtitles/${id}`
+const getSourceMovie = ({ id }) => `${API_URL}/movies/${id}`
 
-export { getMovies, getSourceVideo, getSubtitlesVideo }
+const getSubtitlesMovie = async ({ id, source = 0 }) => {
+  return await window.fetch(`${API_URL}/movies/subtitles?id=${id}&source=${source}`).then(async (response) => {
+    const data = await response.json()
+    if (!response.ok) throw new Error('bad request')
+    return data
+  })
+}
+
+export { getMovies, getSourceMovie, getSubtitlesMovie }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import useSingleMedia from '../../hooks/useSingleMedia'
+import useMovie from '../../hooks/useMovie'
 import Container from '../../layouts/Container'
 import Header from '../../layouts/Header'
 import { RiPlayFill } from 'react-icons/ri'
@@ -8,23 +8,22 @@ import { RiPlayFill } from 'react-icons/ri'
 import styles from './styles.module.css'
 import Button from '../../components/Button'
 import VideoPlayer from '../../components/VideoPlayer'
-import { getSourceVideo, getSubtitlesVideo } from '../../services/movies'
 
 const MovieDetail = () => {
   const { id } = useParams()
-  const { activeMedia } = useSingleMedia({ id })
+  const { movie, source } = useMovie({ id })
   const [showVideoPlayer, setShowVideoPlayer] = useState(false)
 
   return (
     <Container>
       <Header />
-      {activeMedia && (
+      {movie && (
         <section className={styles.section}>
           <header className={styles.hero}>
-            <img className={styles.heroImage} src={activeMedia.images[0]} alt={`${id}-hero-image`} />
+            <img className={styles.heroImage} src={movie.images[0]} alt={`${id}-hero-image`} />
             <div className={styles.heroInfo}>
-              <h1 className={styles.titleMedia}>{activeMedia.title}</h1>
-              <p className={styles.synopsis}>{activeMedia.synopsis}</p>
+              <h1 className={styles.titleMedia}>{movie.title}</h1>
+              <p className={styles.synopsis}>{movie.synopsis}</p>
               <div className={styles.buttons}>
                 <Button onClick={() => setShowVideoPlayer(true)}><RiPlayFill size='28px' /></Button>
                 <Button variant='outline'>Trailer</Button>
@@ -34,10 +33,10 @@ const MovieDetail = () => {
         </section>
       )}
       {
-        (activeMedia && showVideoPlayer) && (
+        (movie && showVideoPlayer) && (
           <VideoPlayer
-            source={getSourceVideo({ id })}
-            subtitles={getSubtitlesVideo({ id })}
+            source={source}
+            subtitles={movie.subtitles}
           />
         )
       }

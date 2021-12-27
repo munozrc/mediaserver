@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import ReactPlayer from 'react-player'
 import styles from './styles.module.css'
 
-const VideoPlayer = ({ source, subtitles }) => {
+const VideoPlayer = ({ source, subtitles = {} }) => {
   const videoRef = useRef(null)
   return (
     <div className={styles.wrapper}>
@@ -15,9 +15,7 @@ const VideoPlayer = ({ source, subtitles }) => {
             crossOrigin: 'true'
           },
           file: {
-            tracks: [
-              { kind: 'subtitles', src: subtitles, srcLang: 'es', default: true }
-            ]
+            tracks: [...subtitles]
           }
         }}
         width='100%'

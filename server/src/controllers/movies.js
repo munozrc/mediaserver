@@ -1,12 +1,41 @@
 const fs = require('fs')
 const router = require('express').Router()
-const { normalizeMovies } = require('../utils')
 const { getConfigFile } = require('../utils/files')
 
-router.get('/', (_req, res) => {
-  const list = getConfigFile('../data/movies.json')
-  const movies = list.map(normalizeMovies)
-  res.send({ movies })
+router.get('/subtitles', (req, res) => {
+  const { protocol, hostname, query } = req
+  const { id, source } = query
+
+  const moviesList = getConfigFile('../data/movies.json')
+  const movie = moviesList.find(movie => movie.id === id)
+  if (typeof movie === 'undefined') return res.send({})
+
+  const subtitles = movie.sources[parseInt(source)].subtitles.map((subtitle) => {
+    const src = `${protocol}://${hostname}:${process.env.PORT || 3001}/api/movies/subtitle?id=${id}&source=${0}&lang=${subtitle.srcLang}`
+    return {
+      kind: 'subtitles',
+      src,
+      srcLang: subtitle.srcLang,
+      default: subtitle.default || false
+    }
+  })
+
+  if (typeof subtitles === 'undefined') return res.send({})
+
+  res.send(subtitles)
+})
+
+router.get('/subtitle', (req, res) => {
+  const { id, source, lang } = req.query
+  const moviesList = getConfigFile('../data/movies.json')
+
+  const movie = moviesList.find(movie => movie.id === id)
+  if (typeof movie === 'undefined') return res.send('')
+
+  const subtitle = movie.sources[parseInt(source)].subtitles.find(sub => sub.srcLang === lang)
+  if (typeof subtitle === 'undefined') return res.send('')
+
+  res.sendFile(subtitle.src)
 })
 
 router.get('/:id', (req, res) => {
@@ -40,14 +69,13 @@ router.get('/:id', (req, res) => {
   }
 })
 
-router.get('/subtitles/:id', (req, res) => {
-  const { id } = req.params
-  const moviesList = getConfigFile('../data/movies.json')
-  const findMovie = moviesList.find(movie => movie.id === id)
-
-  if (typeof findMovie === 'undefined') return res.send({ message: 'movie not found' })
-  const pathSubtitlesMovie = findMovie.sources[0].subtitles[0].src
-  res.sendFile(pathSubtitlesMovie)
+router.get('/', (_req, res) => {
+  const list = getConfigFile('../data/movies.json')
+  const movies = list.map((movie) => {
+    delete movie.sources
+    return movie
+  })
+  res.send({ movies })
 })
 
 module.exports = router
