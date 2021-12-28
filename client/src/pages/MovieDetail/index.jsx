@@ -35,7 +35,7 @@ const MovieDetail = () => {
       {
         (movie && showVideoPlayer) && (
           <VideoPlayer
-            source={source}
+            source={{ title: movie.title, url: source }}
             subtitles={subtitles}
           />
         )

@@ -20,6 +20,11 @@ const VideoPlayer = ({ source, subtitles = {} }) => {
 
   const handleChangeSeek = (value) => { videoRef.current?.seekTo(value, 'seconds') }
 
+  const handlePause = () => {
+    setPlaying(false)
+    setCounter(0)
+  }
+
   return (
     <div className={styles.wrapper} onMouseMove={() => setCounter(0)}>
       <ReactPlayer
@@ -27,12 +32,12 @@ const VideoPlayer = ({ source, subtitles = {} }) => {
         width='100%'
         height='100%'
         className={styles.videoPlayer}
-        url={source}
+        url={source.url}
         playing={isPlaying}
         volume={values.volume}
         onProgress={handleProgress}
         onDuration={handleDurationVideo}
-        onPause={() => setPlaying(false)}
+        onPause={handlePause}
         config={{
           attributes: { crossOrigin: 'true' },
           file: { tracks: [...subtitles] }
@@ -40,7 +45,7 @@ const VideoPlayer = ({ source, subtitles = {} }) => {
       />
       <section className={styles.wrapperControls} style={{ opacity: `${counter <= 3 ? '1' : '0'}` }}>
         <header>
-          <h3>Title</h3>
+          <h3>{source.title}</h3>
         </header>
         <div className={styles.wrapperButtons}>
           <ButtonFlat size='large' onClick={() => setPlaying(prev => !prev)}>
