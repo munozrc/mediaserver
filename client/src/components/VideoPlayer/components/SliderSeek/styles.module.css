@@ -15,6 +15,7 @@
 }
 
 .track {
+  width: 0%;
   background-color: #CF3030;
   border-radius: 10px;
   height: 100%;
