@@ -24,3 +24,25 @@
   transform: translateY(-14%);
   position: relative;
 }
+
+.wrapperControls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 40px;
+  background: linear-gradient(0deg, transparent -20.17%, rgba(0, 0, 0, 0.616) 60.09%), linear-gradient(180deg, transparent -20.17%, rgba(0, 0, 0, 0.616) 60.09%);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.wrapperButtons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 0px;
+}

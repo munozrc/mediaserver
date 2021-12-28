@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import SliderSeek from './components/SliderSeek'
+import { RiPlayFill, RiPauseCircleFill } from 'react-icons/ri'
 import styles from './styles.module.css'
+import ButtonFlat from './components/ButtonFlat'
 
 const VideoPlayer = ({ source, subtitles = {} }) => {
   const videoRef = useRef(null)
@@ -19,7 +21,7 @@ const VideoPlayer = ({ source, subtitles = {} }) => {
   const handleChangeSeek = (value) => { videoRef.current?.seekTo(value, 'seconds') }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} onMouseMove={() => setCounter(0)}>
       <ReactPlayer
         ref={videoRef}
         width='100%'
@@ -36,8 +38,18 @@ const VideoPlayer = ({ source, subtitles = {} }) => {
           file: { tracks: [...subtitles] }
         }}
       />
-      <section>
-        <SliderSeek currentTime={values.played} duration={values.duration} onChangeSeek={handleChangeSeek} />
+      <section className={styles.wrapperControls} style={{ opacity: `${counter <= 3 ? '1' : '0'}` }}>
+        <header>
+          <h3>Title</h3>
+        </header>
+        <div className={styles.wrapperButtons}>
+          <ButtonFlat size='large' onClick={() => setPlaying(prev => !prev)}>
+            {isPlaying ? <RiPauseCircleFill /> : <RiPlayFill />}
+          </ButtonFlat>
+        </div>
+        <footer>
+          <SliderSeek currentTime={values.played} duration={values.duration} onChangeSeek={handleChangeSeek} />
+        </footer>
       </section>
     </div>
   )
