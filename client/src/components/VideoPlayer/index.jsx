@@ -11,12 +11,8 @@ const VideoPlayer = ({ source, subtitles = {} }) => {
         className={styles.videoPlayer}
         url={source}
         config={{
-          attributes: {
-            crossOrigin: 'true'
-          },
-          file: {
-            tracks: [...subtitles]
-          }
+          attributes: { crossOrigin: 'true' },
+          file: { tracks: [...subtitles] }
         }}
         width='100%'
         height='100%'
