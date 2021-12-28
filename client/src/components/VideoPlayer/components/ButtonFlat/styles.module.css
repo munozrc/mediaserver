@@ -1,0 +1,22 @@
+.btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.btn:active {
+  transform: scale(0.8);
+}
+
+.large {
+  width: 120px;
+  height: 120px;
+}
+
+.large svg {
+  font-size: 84px;
+}
