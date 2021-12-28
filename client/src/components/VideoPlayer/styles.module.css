@@ -7,6 +7,14 @@
   box-shadow: 0px 0px 0px 3px #121212;
 }
 
+.hideCursor, .hideCursor button, .hideCursor div{
+  cursor: none;
+}
+
+.hideControls {
+  opacity: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

@@ -1,10 +1,13 @@
 import ReactPlayer from 'react-player'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
-import SliderSeek from './components/SliderSeek'
 import { RiPlayFill, RiPauseCircleFill, RiArrowLeftLine, RiFullscreenFill } from 'react-icons/ri'
-import styles from './styles.module.css'
+import SliderSeek from './components/SliderSeek'
 import ButtonFlat from './components/ButtonFlat'
 import useControls from './hooks/useControls'
+import styles from './styles.module.css'
+
+const hideCursor = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideCursor
+const hideControls = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideControls
 
 const VideoPlayer = ({ source, subtitles = {}, startFullScreen = true }) => {
   const screen = useFullScreenHandle()
@@ -16,7 +19,7 @@ const VideoPlayer = ({ source, subtitles = {}, startFullScreen = true }) => {
 
   return (
     <FullScreen handle={screen}>
-      <div className={styles.wrapper} onMouseMove={controls.handleResetCounter}>
+      <div className={`${styles.wrapper} ${hideCursor(controls)}`} onMouseMove={controls.handleResetCounter}>
         <ReactPlayer
           ref={controls.ref}
           width='100%'
@@ -33,7 +36,7 @@ const VideoPlayer = ({ source, subtitles = {}, startFullScreen = true }) => {
             file: { tracks: [...subtitles] }
           }}
         />
-        <section className={styles.wrapperControls} style={{ opacity: `${controls.counterFocus <= 1 ? '1' : '0'}` }}>
+        <section className={`${styles.wrapperControls} ${hideControls(controls)}`}>
           <header className={styles.header}>
             <ButtonFlat><RiArrowLeftLine /></ButtonFlat>
             <h3 className={styles.titleSource}>{title}</h3>
