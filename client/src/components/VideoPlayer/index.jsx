@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import SliderSeek from './components/SliderSeek'
-import { RiPlayFill, RiPauseCircleFill } from 'react-icons/ri'
+import { RiPlayFill, RiPauseCircleFill, RiArrowLeftLine, RiFullscreenFill } from 'react-icons/ri'
 import styles from './styles.module.css'
 import ButtonFlat from './components/ButtonFlat'
 
@@ -44,8 +44,10 @@ const VideoPlayer = ({ source, subtitles = {} }) => {
         }}
       />
       <section className={styles.wrapperControls} style={{ opacity: `${counter <= 3 ? '1' : '0'}` }}>
-        <header>
-          <h3>{source.title}</h3>
+        <header className={styles.header}>
+          <ButtonFlat><RiArrowLeftLine /></ButtonFlat>
+          <h3 className={styles.titleSource}>{source.title}</h3>
+          <ButtonFlat><RiFullscreenFill size='0.8em' /></ButtonFlat>
         </header>
         <div className={styles.wrapperButtons}>
           <ButtonFlat size='large' onClick={() => setPlaying(prev => !prev)}>
