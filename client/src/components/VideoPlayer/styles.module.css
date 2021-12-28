@@ -7,6 +7,16 @@
   box-shadow: 0px 0px 0px 3px #121212;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleSource {
+  color: #fafafa;
+}
+
 .videoPlayer {
   position: absolute;
   top: 0;
