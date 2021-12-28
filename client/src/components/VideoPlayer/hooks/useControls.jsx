@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 
 export default function useControls () {
   const ref = useRef(null)
-  const [values, setValues] = useState({ loaded: 0, played: 0, duration: 0, volume: 0.5 })
+  const [values, setValues] = useState({ loaded: 0, played: 0, duration: 0, volume: 1 })
   const [isPlaying, setPlaying] = useState(false)
   const [counterFocus, setCounterFocus] = useState(0)
 
