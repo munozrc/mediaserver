@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import MediaContext from '../context/mediaContext'
 import { getSourceMovie } from '../services/movies'
 
-export default function useSingleMedia ({ id }) {
+export default function useMovie ({ id }) {
   const { media } = useContext(MediaContext)
   const [activeMovie, setActiveMovie] = useState(null)
   const [activeSource] = useState(0)
