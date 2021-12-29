@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom'
 import useMovie from '../../hooks/useMovie'
 import Container from '../../layouts/Container'
 import Header from '../../layouts/Header'
-import { RiPlayFill } from 'react-icons/ri'
+import { RiPlayFill, RiCloseFill } from 'react-icons/ri'
 
 import styles from './styles.module.css'
 import Button from '../../components/Button'
+import LinkButton from '../../components/LinkButton'
 import VideoPlayer from '../../components/VideoPlayer'
 import Separator from '../../layouts/Separator'
 
@@ -23,7 +24,10 @@ const MovieDetail = () => {
           <header className={styles.hero}>
             <img className={styles.heroImage} src={movie.images[0]} alt={`${id}-hero-image`} />
             <div className={styles.heroInfo}>
-              <h1 className={styles.titleMedia}>{movie.title}</h1>
+              <header className={styles.heroHeader}>
+                <LinkButton to='/'><RiCloseFill size='1.8em' /></LinkButton>
+                <h1 className={styles.titleMedia}>{movie.title}</h1>
+              </header>
               <p className={styles.synopsis}>{movie.synopsis}</p>
               <div className={styles.buttons}>
                 <Button onClick={() => setShowVideoPlayer(true)}><RiPlayFill size='28px' /></Button>
