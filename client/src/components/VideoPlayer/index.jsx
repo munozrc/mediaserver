@@ -8,6 +8,7 @@ import styles from './styles.module.css'
 
 const hideCursor = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideCursor
 const hideControls = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideControls
+const isFullScreenActive = ({ active }) => active ? styles.fullscreen : ''
 
 const VideoPlayer = ({ source, subtitles = {}, handleClose = () => {} }) => {
   const { screen, isStartFullScreen, toggleFullScreen } = useFullScreen()
@@ -16,7 +17,7 @@ const VideoPlayer = ({ source, subtitles = {}, handleClose = () => {} }) => {
   return (
     <WrapperFullScreen handle={screen}>
       <div
-        className={`${styles.wrapper} ${hideCursor(controls)}`}
+        className={`${styles.wrapper} ${isFullScreenActive(screen)} ${hideCursor(controls)}`}
         onMouseMove={controls.handleResetCounter}
       >
         <ReactPlayer
