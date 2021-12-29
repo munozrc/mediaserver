@@ -1,7 +1,7 @@
 import ReactPlayer from 'react-player'
 import useControls from './hooks/useControls'
 import useFullScreen, { WrapperFullScreen } from './hooks/useFullScreen'
-import { RiPlayFill, RiPauseCircleFill, RiArrowLeftLine, RiFullscreenFill } from 'react-icons/ri'
+import { RiPlayFill, RiPauseCircleFill, RiCloseFill, RiFullscreenFill } from 'react-icons/ri'
 import SliderSeek from './components/SliderSeek'
 import ButtonFlat from './components/ButtonFlat'
 import styles from './styles.module.css'
@@ -37,9 +37,10 @@ const VideoPlayer = ({ source, subtitles = {}, handleClose = () => {} }) => {
         />
         <section className={`${styles.wrapperControls} ${hideControls(controls)}`}>
           <header className={styles.header}>
-            {isStartFullScreen && <ButtonFlat><RiArrowLeftLine onClick={handleClose} /></ButtonFlat>}
             <h3 className={styles.titleSource}>{source.title}</h3>
-            {!isStartFullScreen && <ButtonFlat><RiFullscreenFill size='0.8em' onClick={toggleFullScreen} /></ButtonFlat>}
+            {isStartFullScreen
+              ? <ButtonFlat><RiCloseFill onClick={handleClose} /></ButtonFlat>
+              : <ButtonFlat><RiFullscreenFill size='0.8em' onClick={toggleFullScreen} /></ButtonFlat>}
           </header>
           <div className={styles.wrapperButtons}>
             <ButtonFlat size='large' onClick={controls.handlePlay}>
