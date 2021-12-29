@@ -61,7 +61,14 @@
   opacity: 1;
   background-color: transparent;
   font-family: 'LatoBlack';
-  text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+  text-shadow: 
+    0 0 4px black, 0 0 4px black, 0 0 4px black, 
+    0 0 4px black, 0 0 4px black, 0 0 4px black, 
+    0 0 4px black, 0 0 4px black, 0 0 4px black, 
+    0 0 4px black, 0 0 4px black, 0 0 4px black, 
+    0 0 4px black, 0 0 4px black, 0 0 4px black, 
+    0 0 4px black, 0 0 4px black, 0 0 4px black,
+    0 0 4px black, 0 0 4px black;
 }
 
 .videoPlayer > video::-webkit-media-text-track-container {
