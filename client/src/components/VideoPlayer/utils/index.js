@@ -3,4 +3,9 @@ function getProgressInPixels ({ currentTime, duration }) {
   return `${progress}%`
 }
 
-export { getProgressInPixels }
+function secondsToTime ({ currentTime, duration }) {
+  const seconds = duration - currentTime
+  return new Date(seconds * 1000).toISOString().slice(11, 19)
+}
+
+export { getProgressInPixels, secondsToTime }
