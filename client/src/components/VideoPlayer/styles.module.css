@@ -5,6 +5,7 @@
   border-radius: 8px;
   background-color: #000;
   box-shadow: 0px 0px 0px 3px #121212;
+  z-index: 2;
 }
 
 .hideCursor, .hideCursor button, .hideCursor div{
@@ -30,7 +31,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 60px;
+  padding: 20px;
   background: 
     linear-gradient(0deg, transparent -20.17%, rgba(0, 0, 0, 0.616) 60.09%), 
     linear-gradient(180deg, transparent -20.17%, rgba(0, 0, 0, 0.616) 60.09%);
@@ -69,7 +70,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
-  .wrapper {
+  .fullscreen {
     transform: rotate(-90deg);
     transform-origin: left top;
     width: 100vh;
