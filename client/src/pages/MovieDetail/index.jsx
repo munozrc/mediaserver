@@ -42,6 +42,7 @@ const MovieDetail = () => {
           <VideoPlayer
             source={{ title: movie.title, url: source }}
             subtitles={subtitles}
+            handleClose={() => setShowVideoPlayer(false)}
           />
         )
       }
