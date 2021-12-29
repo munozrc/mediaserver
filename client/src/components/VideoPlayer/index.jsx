@@ -9,7 +9,7 @@ import styles from './styles.module.css'
 const hideCursor = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideCursor
 const hideControls = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideControls
 
-const VideoPlayer = ({ source, subtitles = {} }) => {
+const VideoPlayer = ({ source, subtitles = {}, handleClose = () => {} }) => {
   const { screen, toggleFullScreen } = useFullScreen()
   const controls = useControls()
 
@@ -37,7 +37,7 @@ const VideoPlayer = ({ source, subtitles = {} }) => {
         />
         <section className={`${styles.wrapperControls} ${hideControls(controls)}`}>
           <header className={styles.header}>
-            <ButtonFlat><RiArrowLeftLine /></ButtonFlat>
+            <ButtonFlat><RiArrowLeftLine onClick={handleClose} /></ButtonFlat>
             <h3 className={styles.titleSource}>{source.title}</h3>
             <ButtonFlat><RiFullscreenFill size='0.8em' onClick={toggleFullScreen} /></ButtonFlat>
           </header>
