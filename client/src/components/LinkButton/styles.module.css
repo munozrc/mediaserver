@@ -1,0 +1,30 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 44px;
+  max-height: 44px;
+  padding: 0 16px;
+  font-size: 1.2em;
+  gap: 8px;
+  color: #fafafa;
+}
+
+.flat {
+  aspect-ratio: 1;
+  height: fit-content;
+  max-height: none;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.3s ease-in-out;
+  padding: 6px;
+  background-color: rgba(255, 255, 255, 0.055);
+}
+
+.flat:active {
+  transform: scale(0.8);
+}
+
+.flat:hover {
+  background-color: rgba(255, 255, 255, 0.11);
+}
