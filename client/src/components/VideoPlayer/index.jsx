@@ -10,7 +10,7 @@ const hideCursor = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideCur
 const hideControls = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideControls
 
 const VideoPlayer = ({ source, subtitles = {}, handleClose = () => {} }) => {
-  const { screen, toggleFullScreen } = useFullScreen()
+  const { screen, isStartFullScreen, toggleFullScreen } = useFullScreen()
   const controls = useControls()
 
   return (
@@ -37,9 +37,9 @@ const VideoPlayer = ({ source, subtitles = {}, handleClose = () => {} }) => {
         />
         <section className={`${styles.wrapperControls} ${hideControls(controls)}`}>
           <header className={styles.header}>
-            <ButtonFlat><RiArrowLeftLine onClick={handleClose} /></ButtonFlat>
+            {isStartFullScreen && <ButtonFlat><RiArrowLeftLine onClick={handleClose} /></ButtonFlat>}
             <h3 className={styles.titleSource}>{source.title}</h3>
-            <ButtonFlat><RiFullscreenFill size='0.8em' onClick={toggleFullScreen} /></ButtonFlat>
+            {!isStartFullScreen && <ButtonFlat><RiFullscreenFill size='0.8em' onClick={toggleFullScreen} /></ButtonFlat>}
           </header>
           <div className={styles.wrapperButtons}>
             <ButtonFlat size='large' onClick={controls.handlePlay}>
