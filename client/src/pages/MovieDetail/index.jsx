@@ -8,6 +8,7 @@ import { RiPlayFill } from 'react-icons/ri'
 import styles from './styles.module.css'
 import Button from '../../components/Button'
 import VideoPlayer from '../../components/VideoPlayer'
+import Separator from '../../layouts/Separator'
 
 const MovieDetail = () => {
   const { id } = useParams()
@@ -40,6 +41,7 @@ const MovieDetail = () => {
           />
         )
       }
+      <Separator />
     </Container>
   )
 }
