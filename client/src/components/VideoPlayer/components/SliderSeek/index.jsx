@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { getProgressInPixels } from '../../utils'
+import { getProgressInPixels, secondsToTime } from '../../utils'
 import styles from './styles.module.css'
 
 const SliderSeek = ({ currentTime, duration, onChangeSeek }) => {
@@ -18,6 +18,7 @@ const SliderSeek = ({ currentTime, duration, onChangeSeek }) => {
       <div ref={seekRef} className={styles.seek} onClick={handleOnMouse}>
         <div className={styles.track} style={{ width: getProgressInPixels({ currentTime, duration }) }} />
       </div>
+      <span className={styles.time}>{secondsToTime({ currentTime, duration })}</span>
     </div>
   )
 }
