@@ -1,0 +1,23 @@
+{
+  "name": "mediaserver",
+  "version": "1.0.0",
+  "description": "This is a minimal media player (client-server) with Node JS",
+  "private": true,
+  "workspaces": [ "client", "server" ],
+  "scripts": {
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "build:client": "npm run build --workspace=client",
+    "start:server": "npm start --workspace=server",
+    "start": "npm run build:client && npm run start:server"
+  },
+  "keywords": [],
+  "author": "munozrc",
+  "license": "ISC",
+  "devDependencies": {
+    "standard": "16.0.4"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
+  }
+}
