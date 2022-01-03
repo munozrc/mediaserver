@@ -11,15 +11,15 @@ const Home = () => {
       <Header />
       <GridContainer>
         {
-            media.movies.map(movie => (
-              <MediaCard
-                key={movie.id}
-                id={movie.id}
-                image={movie.poster}
-                title={movie.title}
-              />
-            ))
-          }
+          media.movies.map(movie => (
+            <MediaCard
+              key={movie.id}
+              id={movie.id}
+              image={movie.poster}
+              title={movie.title}
+            />
+          ))
+        }
       </GridContainer>
     </Container>
   )
