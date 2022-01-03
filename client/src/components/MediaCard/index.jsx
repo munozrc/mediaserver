@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { RiPlayFill } from 'react-icons/ri' // Remix Icons
 import styles from './styles.module.css'
 
-const MediaCard = ({ type = 'movie', title, image, id }) => {
+const MediaCard = ({ type = 'movies', title, image, id }) => {
   return (
     <Link className={styles.wrapper} to={`/${type}/${id}`}>
       <div className={styles.wrapperImage}>
