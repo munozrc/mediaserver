@@ -1,8 +1,27 @@
 import { Router } from 'express'
 import { statSync, createReadStream } from 'fs'
 import { getConnection } from '../database.js'
+import { normalizeSerie } from '../utils/index.js'
 
 const router = new Router()
+
+router.get('/subtitle', (req, res) => {
+  const { serie, episode, source, lang } = req.query
+  const { series } = getConnection().data
+
+  console.log({ serie, episode, source, lang })
+
+  const findSerie = series.find(({ id }) => id === serie)
+  if (typeof findSerie === 'undefined') return res.send({ message: 'serie not found' })
+
+  const findEpisode = findSerie.episodes.find(({ id }) => id === parseFloat(episode))
+  if (typeof findEpisode === 'undefined') return res.send({ message: 'episode not found' })
+
+  const subtitle = findEpisode.sources[parseInt(source)].subtitles.find(sub => sub.srcLang === lang)
+  if (typeof subtitle === 'undefined') return res.send('')
+
+  res.sendFile(subtitle.src)
+})
 
 router.get('/media', (req, res) => {
   const { serie, episode } = req.query
@@ -11,7 +30,7 @@ router.get('/media', (req, res) => {
   const findSerie = series.find(({ id }) => id === serie)
   if (typeof findSerie === 'undefined') return res.send({ message: 'serie not found' })
 
-  const findEpisode = findSerie.episodes.find(({ id }) => id === episode)
+  const findEpisode = findSerie.episodes.find(({ id }) => id === parseFloat(episode))
   if (typeof findEpisode === 'undefined') return res.send({ message: 'episode not found' })
 
   // Ensure there is a range given for the video
@@ -49,7 +68,10 @@ router.get('/media', (req, res) => {
 
 router.get('/', (_req, res) => {
   const { series } = getConnection().data
-  res.send({ series })
+  const normalizeSeries = series.map(normalizeSerie)
+
+  console.log({ normalizeSeries })
+  res.send({ series: normalizeSeries })
 })
 
 export default router
