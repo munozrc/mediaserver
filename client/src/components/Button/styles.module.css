@@ -29,3 +29,16 @@
 .outline:hover {
   background-color: #303030;
 }
+
+.flat {
+  width: 48px;
+  aspect-ratio: 1;
+  max-height: none;
+  border-radius: 50%;
+  padding: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.flat:hover {
+  background-color: rgba(255, 255, 255, 0.055);
+}
