@@ -9,7 +9,7 @@ import VideoPlayer from '../../components/VideoPlayer'
 
 const SerieDetail = () => {
   const { id } = useParams()
-  const { serie, source } = useSerie({ id })
+  const { serie, episode, source } = useSerie({ id })
   const [showVideoPlayer, setShowVideoPlayer] = useState(false)
 
   const buttonsHeroMedia = [
@@ -38,8 +38,9 @@ const SerieDetail = () => {
       {
         (serie && showVideoPlayer) && (
           <VideoPlayer
-            source={{ title: serie.title, url: source }}
+            source={{ title: episode.title, url: source.src }}
             handleClose={() => setShowVideoPlayer(false)}
+            subtitles={source.subtitles}
           />
         )
       }
