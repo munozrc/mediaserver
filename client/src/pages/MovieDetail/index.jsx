@@ -3,39 +3,37 @@ import { useParams } from 'react-router-dom'
 import useMovie from '../../hooks/useMovie'
 import Container from '../../layouts/Container'
 import Header from '../../layouts/Header'
-import { RiPlayFill, RiCloseFill } from 'react-icons/ri'
-
-import styles from './styles.module.css'
-import Button from '../../components/Button'
-import LinkButton from '../../components/LinkButton'
-import VideoPlayer from '../../components/VideoPlayer'
 import Separator from '../../layouts/Separator'
+import HeroMedia from '../../layouts/HeroMedia'
+import VideoPlayer from '../../components/VideoPlayer'
 
 const MovieDetail = () => {
   const { id } = useParams()
   const { movie, source, subtitles } = useMovie({ id })
   const [showVideoPlayer, setShowVideoPlayer] = useState(false)
 
+  const buttonsHeroMedia = [
+    {
+      onClick: () => setShowVideoPlayer(true),
+      children: HeroMedia.IconPlay
+    },
+    {
+      variant: 'outline',
+      children: 'Trailer'
+    }
+  ]
+
   return (
     <Container>
       <Header />
       {movie && (
-        <section className={styles.section}>
-          <header className={styles.hero}>
-            <img className={styles.heroImage} src={movie.images[0]} alt={`${id}-hero-image`} />
-            <div className={styles.heroInfo}>
-              <header className={styles.heroHeader}>
-                <LinkButton to='/'><RiCloseFill size='1.8em' /></LinkButton>
-                <h1 className={styles.titleMedia}>{movie.title}</h1>
-              </header>
-              <p className={styles.synopsis}>{movie.synopsis}</p>
-              <div className={styles.buttons}>
-                <Button onClick={() => setShowVideoPlayer(true)}><RiPlayFill size='28px' /></Button>
-                <Button variant='outline'>Trailer</Button>
-              </div>
-            </div>
-          </header>
-        </section>
+        <HeroMedia
+          id={id}
+          image={movie.images[0]}
+          title={movie.title}
+          synopsis={movie.synopsis}
+          buttons={buttonsHeroMedia}
+        />
       )}
       {
         (movie && showVideoPlayer) && (
