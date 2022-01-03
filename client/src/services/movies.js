@@ -1,9 +1,11 @@
-const getMovies = async () => {
-  return await window.fetch('/api/movies').then(async (response) => {
-    const { movies, message } = await response.json()
-    if (!response.ok) throw new Error(message)
-    return movies
-  })
+const getMovies = () => {
+  return window.fetch('/api/movies')
+    .then(response => response.json())
+    .then(({ movies }) => movies)
+    .catch((error) => {
+      console.log({ error })
+      return []
+    })
 }
 
 const getSubtitlesMovie = async ({ id, source = 0 }) => {
