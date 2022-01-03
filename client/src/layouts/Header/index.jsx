@@ -22,7 +22,7 @@ const Header = () => {
           <CustomNavLink to='/series'>Series</CustomNavLink>
         </ul>
       </nav>
-      <Button variant='flat' style={{ display: 'none' }}>
+      <Button variant='flat' className={styles.toggleMenu}>
         <RiMenuFill size='2em' />
       </Button>
     </header>
