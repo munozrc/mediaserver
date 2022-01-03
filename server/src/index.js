@@ -1,7 +1,8 @@
-const app = require('./app')
-const { fileExists } = require('./utils/files')
+import app from './app.js'
+import { createConnection } from './database.js'
 
-fileExists('movies.json')
+// Create connection Lowdb
+createConnection()
 
 // Server is listening
 app.listen(app.get('port'), () => {

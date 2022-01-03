@@ -1,13 +1,15 @@
-const fs = require('fs')
-const router = require('express').Router()
-const { normalizeMovie } = require('../utils')
-const { getConfigFile } = require('../utils/files')
-const moviesList = getConfigFile('../data/movies.json')
+import { Router } from 'express'
+import { statSync, createReadStream } from 'fs'
+import { getConnection } from '../database.js'
+import { normalizeMovie } from '../utils/index.js'
+
+const router = new Router()
 
 router.get('/subtitle', (req, res) => {
   const { id, source, lang } = req.query
+  const { movies } = getConnection().data
 
-  const movie = moviesList.find(movie => movie.id === id)
+  const movie = movies.find(movie => movie.id === id)
   if (typeof movie === 'undefined') return res.send('')
 
   const subtitle = movie.sources[parseInt(source)].subtitles.find(sub => sub.srcLang === lang)
@@ -18,8 +20,9 @@ router.get('/subtitle', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params
+  const { movies } = getConnection().data
 
-  const findMovie = moviesList.find(movie => movie.id === id)
+  const findMovie = movies.find(movie => movie.id === id)
   if (typeof findMovie === 'undefined') return res.send({ message: 'movie not found' })
 
   // Ensure there is a range given for the video
@@ -28,7 +31,7 @@ router.get('/:id', (req, res) => {
 
   // get video stats (about 61MB)
   const videoPath = findMovie.sources[0].path
-  const videoSize = fs.statSync(findMovie.sources[0].path).size
+  const videoSize = statSync(findMovie.sources[0].path).size
 
   // Parse Range
   // Example: "bytes=32324-"
@@ -49,7 +52,7 @@ router.get('/:id', (req, res) => {
   res.writeHead(206, headers)
 
   // create video read stream for this particular chunk
-  const videoStream = fs.createReadStream(videoPath, { start, end })
+  const videoStream = createReadStream(videoPath, { start, end })
 
   // Stream the video chunk to the client
   videoStream.pipe(res)
@@ -57,9 +60,12 @@ router.get('/:id', (req, res) => {
 
 router.get('/', (req, res) => {
   const { protocol, hostname } = req
+  const { movies } = getConnection().data
+
   const originURL = `${protocol}://${hostname}:${process.env.PORT || 3001}/api`
-  const movies = moviesList.map((movie) => normalizeMovie({ movie, originURL }))
-  res.send({ movies })
+  const normalizeMovies = movies.map((movie) => normalizeMovie({ movie, originURL }))
+
+  res.send({ movies: normalizeMovies })
 })
 
-module.exports = router
+export default router

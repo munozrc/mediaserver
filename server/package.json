@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
     "lint": "npm run lint",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "cors": "2.8.5",
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "lowdb": "3.0.0"
   }
 }

@@ -7,3 +7,4 @@ dist-ssr
 
 # User data files
 server/src/data
+db.json

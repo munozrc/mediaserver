@@ -16,4 +16,4 @@ const normalizeMovie = ({ movie, originURL }) => {
   return { ...movie, sources: newSources }
 }
 
-module.exports = { normalizeMovie }
+export { normalizeMovie }

@@ -1,10 +1,12 @@
-const express = require('express')
-const cors = require('cors')
-const path = require('path')
-const moviesRouter = require('./controllers/movies')
+import { fileURLToPath } from 'url'
+import express from 'express'
+import moviesRouter from './controllers/movies.js'
+import path from 'path'
+import cors from 'cors'
 
 // Initializations
 const app = express()
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Settings
 app.set('port', process.env.PORT || 3001)
@@ -21,4 +23,4 @@ app.use(express.static('../client/dist'))
 app.use('/api/movies', moviesRouter)
 app.get('/*', (_req, res) => { res.sendFile(path.join(__dirname, '../../client/dist/index.html')) })
 
-module.exports = app
+export default app
