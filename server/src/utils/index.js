@@ -15,4 +15,26 @@ const normalizeMovie = (movie) => {
   return { ...movie, sources: newSources }
 }
 
-export { normalizeMovie }
+const normalizeSerie = (serie) => {
+  const { id, episodes: listEpisodes } = serie
+  const episodes = listEpisodes.map((episode) => {
+    const { id: idEpisode, sources: listSources } = episode
+    const sources = listSources.map((source, index) => {
+      const { subtitles: listSubtitles } = source
+      const src = `/api/series/media?serie=${id}&episode=${idEpisode}&source=${index}`
+
+      const subtitles = listSubtitles.map((subtitle) => ({
+        ...subtitle,
+        kind: 'subtitles',
+        src: `/api/series/subtitle?serie=${id}&episode=${idEpisode}&source=${index}&lang=${subtitle.srcLang}`
+      }))
+
+      return { src, subtitles }
+    })
+
+    return { ...episode, sources }
+  })
+  return { ...serie, episodes }
+}
+
+export { normalizeMovie, normalizeSerie }
