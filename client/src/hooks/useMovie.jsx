@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import MediaContext from '../context/mediaContext'
-import { getSourceMovie } from '../services/movies'
 
 export default function useMovie ({ id }) {
   const { media } = useContext(MediaContext)
@@ -14,7 +13,7 @@ export default function useMovie ({ id }) {
 
   return {
     movie: activeMovie,
-    source: getSourceMovie({ id }),
+    source: `/api/movies/${id}`,
     subtitles: activeMovie?.sources[activeSource].subtitles
   }
 }
