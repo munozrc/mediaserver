@@ -23,8 +23,6 @@ const SerieDetail = () => {
     }
   ]
 
-  console.log({ serie })
-
   return (
     <Container>
       <Header />
