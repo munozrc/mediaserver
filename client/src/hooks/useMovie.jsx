@@ -13,7 +13,7 @@ export default function useMovie ({ id }) {
 
   return {
     movie: activeMovie,
-    source: `/api/movies/${id}`,
+    source: activeMovie?.sources[activeSource].src,
     subtitles: activeMovie?.sources[activeSource].subtitles
   }
 }
