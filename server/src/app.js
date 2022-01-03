@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'url'
 import express from 'express'
 import moviesRouter from './controllers/movies.js'
+import seriesRouter from './controllers/series.js'
 import path from 'path'
 import cors from 'cors'
 
@@ -21,6 +22,7 @@ app.use(express.static('../client/dist'))
 
 // Routes
 app.use('/api/movies', moviesRouter)
+app.use('/api/series', seriesRouter)
 app.get('/*', (_req, res) => { res.sendFile(path.join(__dirname, '../../client/dist/index.html')) })
 
 export default app
