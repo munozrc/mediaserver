@@ -9,9 +9,9 @@ export function MediaContextProvider ({ children }) {
 
   useEffect(() => {
     Promise.all([
-      getMovies(),
-      getSeries()
-    ]).then(([movies, series]) => {
+      getSeries(),
+      getMovies()
+    ]).then(([series, movies]) => {
       setMedia({ series, movies })
     }).catch(error => new Error(error))
   }, [])
