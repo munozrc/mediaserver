@@ -27,7 +27,7 @@ const Home = () => {
               id={serie.id}
               image={serie.poster}
               title={serie.title}
-              type='serie'
+              type='series'
             />
           ))
         }
