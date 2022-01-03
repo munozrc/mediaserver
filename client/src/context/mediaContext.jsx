@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 import { getMovies } from '../services/movies'
+import { getSeries } from '../services/series'
 
 const MediaContext = createContext({})
 
@@ -7,7 +8,12 @@ export function MediaContextProvider ({ children }) {
   const [media, setMedia] = useState({ series: [], movies: [] })
 
   useEffect(() => {
-    getMovies().then((movies) => setMedia(prev => ({ ...prev, movies })))
+    Promise.all([
+      getMovies(),
+      getSeries()
+    ]).then(([movies, series]) => {
+      setMedia({ series, movies })
+    }).catch(error => new Error(error))
   }, [])
 
   return (
