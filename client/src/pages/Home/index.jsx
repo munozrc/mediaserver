@@ -11,12 +11,23 @@ const Home = () => {
       <Header />
       <GridContainer>
         {
-          media.movies.map(movie => (
+          media.movies.slice(0, 6).map(movie => (
             <MediaCard
               key={movie.id}
               id={movie.id}
               image={movie.poster}
               title={movie.title}
+            />
+          ))
+        }
+        {
+          media.series.slice(0, 6).map(serie => (
+            <MediaCard
+              key={serie.id}
+              id={serie.id}
+              image={serie.poster}
+              title={serie.title}
+              type='serie'
             />
           ))
         }
