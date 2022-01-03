@@ -58,12 +58,9 @@ router.get('/:id', (req, res) => {
   videoStream.pipe(res)
 })
 
-router.get('/', (req, res) => {
-  const { protocol, hostname } = req
+router.get('/', (_req, res) => {
   const { movies } = getConnection().data
-
-  const originURL = `${protocol}://${hostname}:${process.env.PORT || 3001}/api`
-  const normalizeMovies = movies.map((movie) => normalizeMovie({ movie, originURL }))
+  const normalizeMovies = movies.map(normalizeMovie)
 
   res.send({ movies: normalizeMovies })
 })
