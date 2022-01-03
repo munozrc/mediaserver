@@ -18,11 +18,11 @@ router.get('/subtitle', (req, res) => {
   res.sendFile(subtitle.src)
 })
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params
+router.get('/media', (req, res) => {
+  const { movie, source } = req.query
   const { movies } = getConnection().data
 
-  const findMovie = movies.find(movie => movie.id === id)
+  const findMovie = movies.find(({ id }) => id === movie)
   if (typeof findMovie === 'undefined') return res.send({ message: 'movie not found' })
 
   // Ensure there is a range given for the video
@@ -30,8 +30,8 @@ router.get('/:id', (req, res) => {
   if (!range) return res.status(400).send('Requires Range header')
 
   // get video stats (about 61MB)
-  const videoPath = findMovie.sources[0].path
-  const videoSize = statSync(findMovie.sources[0].path).size
+  const videoPath = findMovie.sources[parseInt(source)].path
+  const videoSize = statSync(findMovie.sources[parseInt(source)].path).size
 
   // Parse Range
   // Example: "bytes=32324-"
