@@ -10,7 +10,7 @@ const hideCursor = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideCur
 const hideControls = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideControls
 const isFullScreenActive = ({ active }) => active ? styles.fullscreen : ''
 
-const VideoPlayer = ({ source, subtitles = {}, handleClose = () => {} }) => {
+const VideoPlayer = ({ source, subtitles = [], handleClose = () => {} }) => {
   const { screen, isStartFullScreen, toggleFullScreen } = useFullScreen()
   const controls = useControls()
 
