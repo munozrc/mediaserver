@@ -1,15 +1,14 @@
 const normalizeMovie = (movie) => {
   const { id, sources } = movie
   const newSources = sources.map((source, index) => {
-    const subtitles = source.subtitles.map((subtitle) => {
-      return {
-        ...subtitle,
-        kind: 'subtitles',
-        src: `/api/movies/subtitle?id=${id}&source=${index}&lang=${subtitle.srcLang}`
-      }
-    })
+    const src = `/api/movies/media?movie=${id}&source=${index}`
+    const subtitles = source.subtitles.map((subtitle) => ({
+      ...subtitle,
+      kind: 'subtitles',
+      src: `/api/movies/subtitle?id=${id}&source=${index}&lang=${subtitle.srcLang}`
+    }))
 
-    return { id: index, subtitles }
+    return { src, subtitles }
   })
 
   return { ...movie, sources: newSources }
@@ -34,6 +33,7 @@ const normalizeSerie = (serie) => {
 
     return { ...episode, sources }
   })
+
   return { ...serie, episodes }
 }
 
