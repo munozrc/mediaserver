@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Movies from './pages/Movies'
 import Series from './pages/Series'
 import MovieDetail from './pages/MovieDetail'
+import SerieDetail from './pages/SerieDetail'
 
 const App = () => {
   return (
@@ -13,7 +14,8 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/movies' element={<Movies />} />
           <Route path='/series' element={<Series />} />
-          <Route path='/movie/:id' element={<MovieDetail />} />
+          <Route path='/movies/:id' element={<MovieDetail />} />
+          <Route path='/series/:id' element={<SerieDetail />} />
         </Routes>
       </MediaContextProvider>
     </BrowserRouter>
