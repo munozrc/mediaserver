@@ -1,0 +1,17 @@
+.buttonSkip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.05em;
+  background-color: #FAFAFA;
+  color: #121212;
+  opacity: 0.6;
+  padding: 8px 12px 8px 8px;
+  font-weight: bold;
+  transition: opacity .2s ease;
+}
+
+.buttonSkip:hover, .buttonSkip:active {
+  opacity: 0.8;
+}
