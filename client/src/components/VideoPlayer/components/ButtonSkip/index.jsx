@@ -1,16 +1,14 @@
 import { RiSkipForwardFill } from 'react-icons/ri'
 import styles from './styles.module.css'
 
-const DEFAULT_MESSAGE = 'Siguiente Episodio'
-
-const ButtonSkip = ({ message = DEFAULT_MESSAGE, isVisible = false, handleClick }) => {
+const ButtonSkip = ({ isVisible = false, handleClick = () => {} }) => {
   return (
     <button
       className={styles.buttonSkip}
       style={{ visibility: isVisible ? 'none' : 'hidden' }}
       onClick={handleClick}
     >
-      <RiSkipForwardFill size='1.4em' />{message}
+      <RiSkipForwardFill size='1.4em' />Siguiente Episodio
     </button>
   )
 }
