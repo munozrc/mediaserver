@@ -4,8 +4,12 @@ function getProgressInPixels ({ currentTime, duration }) {
 }
 
 function secondsToTime ({ currentTime, duration }) {
-  const seconds = duration - currentTime
+  const seconds = getTimeRemaining({ currentTime, duration })
   return new Date(seconds * 1000).toISOString().slice(11, 19)
 }
 
-export { getProgressInPixels, secondsToTime }
+function getTimeRemaining ({ currentTime, duration }) {
+  return duration - currentTime
+}
+
+export { getProgressInPixels, secondsToTime, getTimeRemaining }
