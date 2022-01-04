@@ -11,9 +11,11 @@ const hideCursor = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideCur
 const hideControls = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideControls
 const isFullScreenActive = ({ active }) => active ? styles.fullscreen : ''
 
-const VideoPlayer = ({ source, subtitles = [], handleClose = () => {} }) => {
+const VideoPlayer = ({ source, subtitles, handleClose }) => {
   const { screen, isStartFullScreen, toggleFullScreen } = useFullScreen()
   const controls = useControls()
+
+  const handleSkipEpisode = () => {}
 
   return (
     <WrapperFullScreen handle={screen}>
@@ -34,7 +36,7 @@ const VideoPlayer = ({ source, subtitles = [], handleClose = () => {} }) => {
           onPause={controls.handlePause}
           config={{
             attributes: { crossOrigin: 'true' },
-            file: { tracks: [...subtitles] }
+            file: { tracks: subtitles }
           }}
         />
         <section className={`${styles.wrapperControls} ${hideControls(controls)}`}>
@@ -51,7 +53,11 @@ const VideoPlayer = ({ source, subtitles = [], handleClose = () => {} }) => {
           </div>
           <footer className={styles.footerControls}>
             <div className={styles.extraControls}>
-              <ButtonSkip />
+              <ButtonSkip
+                handleClick={handleSkipEpisode}
+                currentTime={controls.values.played}
+                duration={controls.values.duration}
+              />
             </div>
             <SliderSeek
               currentTime={controls.values.played}
