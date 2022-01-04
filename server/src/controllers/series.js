@@ -9,8 +9,6 @@ router.get('/subtitle', (req, res) => {
   const { serie, episode, source, lang } = req.query
   const { series } = getConnection().data
 
-  console.log({ serie, episode, source, lang })
-
   const findSerie = series.find(({ id }) => id === serie)
   if (typeof findSerie === 'undefined') return res.send({ message: 'serie not found' })
 
@@ -70,7 +68,6 @@ router.get('/', (_req, res) => {
   const { series } = getConnection().data
   const normalizeSeries = series.map(normalizeSerie)
 
-  console.log({ normalizeSeries })
   res.send({ series: normalizeSeries })
 })
 
