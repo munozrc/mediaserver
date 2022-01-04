@@ -5,6 +5,7 @@ import { RiPlayFill, RiPauseCircleFill, RiCloseFill, RiFullscreenFill } from 're
 import SliderSeek from './components/SliderSeek'
 import ButtonFlat from './components/ButtonFlat'
 import styles from './styles.module.css'
+import ButtonSkip from './components/ButtonSkip'
 
 const hideCursor = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideCursor
 const hideControls = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideControls
@@ -48,7 +49,10 @@ const VideoPlayer = ({ source, subtitles = [], handleClose = () => {} }) => {
               {controls.isPlaying ? <RiPauseCircleFill /> : <RiPlayFill />}
             </ButtonFlat>
           </div>
-          <footer>
+          <footer className={styles.footerControls}>
+            <div className={styles.extraControls}>
+              <ButtonSkip />
+            </div>
             <SliderSeek
               currentTime={controls.values.played}
               duration={controls.values.duration}
