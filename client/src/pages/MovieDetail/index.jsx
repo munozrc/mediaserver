@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import useMovie from '../../hooks/useMovie'
-import Container from '../../layouts/Container'
-import Header from '../../layouts/Header'
-import Separator from '../../layouts/Separator'
-import HeroMedia from '../../layouts/HeroMedia'
 import VideoPlayer from '../../components/VideoPlayer'
+import useMovie from '../../hooks/useMovie'
+import Container, { ContainerCenter } from '../../layouts/Container'
+import Header from '../../layouts/Header'
+import HeroMedia from '../../layouts/HeroMedia'
+import Separator from '../../layouts/Separator'
 
 const MovieDetail = () => {
   const { id } = useParams()
@@ -23,6 +23,18 @@ const MovieDetail = () => {
     }
   ]
 
+  if (movie && showVideoPlayer) {
+    return (
+      <ContainerCenter>
+        <VideoPlayer
+          source={{ title: movie.title, url: source }}
+          subtitles={subtitles}
+          handleClose={() => setShowVideoPlayer(false)}
+        />
+      </ContainerCenter>
+    )
+  }
+
   return (
     <Container>
       <Header />
@@ -35,15 +47,6 @@ const MovieDetail = () => {
           buttons={buttonsHeroMedia}
         />
       )}
-      {
-        (movie && showVideoPlayer) && (
-          <VideoPlayer
-            source={{ title: movie.title, url: source }}
-            subtitles={subtitles}
-            handleClose={() => setShowVideoPlayer(false)}
-          />
-        )
-      }
       <Separator />
     </Container>
   )
