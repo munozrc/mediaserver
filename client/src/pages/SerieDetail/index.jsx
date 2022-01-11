@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import ListEpisodes from '../../components/ListEpisodes'
 import VideoPlayer from '../../components/VideoPlayer'
 import useSerie from '../../hooks/useSerie'
-import Container from '../../layouts/Container'
+import Container, { ContainerCenter } from '../../layouts/Container'
 import Header from '../../layouts/Header'
 import HeroMedia from '../../layouts/HeroMedia'
 import Separator from '../../layouts/Separator'
@@ -24,6 +24,18 @@ const SerieDetail = () => {
     }
   ]
 
+  if (serie && showVideoPlayer) {
+    return (
+      <ContainerCenter>
+        <VideoPlayer
+          source={{ title: `E${episode.id}: "${episode.title}"`, url: source.src }}
+          subtitles={source.subtitles}
+          handleClose={() => setShowVideoPlayer(false)}
+        />
+      </ContainerCenter>
+    )
+  }
+
   return (
     <Container>
       <Header />
@@ -39,15 +51,6 @@ const SerieDetail = () => {
           <ListEpisodes episodes={serie.episodes} />
         </>
       )}
-      {
-        (serie && showVideoPlayer) && (
-          <VideoPlayer
-            source={{ title: episode.title, url: source.src }}
-            handleClose={() => setShowVideoPlayer(false)}
-            subtitles={source.subtitles}
-          />
-        )
-      }
       <Separator />
     </Container>
   )
