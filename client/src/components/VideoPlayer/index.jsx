@@ -1,11 +1,11 @@
+import { RiCloseFill, RiFullscreenFill, RiPauseCircleFill, RiPlayFill } from 'react-icons/ri'
 import ReactPlayer from 'react-player'
+import ButtonFlat from './components/ButtonFlat'
+import ButtonSkip from './components/ButtonSkip'
+import SliderSeek from './components/SliderSeek'
 import useControls from './hooks/useControls'
 import useFullScreen, { WrapperFullScreen } from './hooks/useFullScreen'
-import { RiPlayFill, RiPauseCircleFill, RiCloseFill, RiFullscreenFill } from 'react-icons/ri'
-import SliderSeek from './components/SliderSeek'
-import ButtonFlat from './components/ButtonFlat'
 import styles from './styles.module.css'
-import ButtonSkip from './components/ButtonSkip'
 
 const hideCursor = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideCursor
 const hideControls = ({ counterFocus }) => counterFocus <= 1 ? '' : styles.hideControls
@@ -40,9 +40,16 @@ const VideoPlayer = ({ source, subtitles, handleClose, handleSkipEpisode }) => {
         <section className={`${styles.wrapperControls} ${hideControls(controls)}`}>
           <header className={styles.header}>
             <h3 className={styles.titleSource}>{source.title}</h3>
-            {isStartFullScreen
-              ? <ButtonFlat><RiCloseFill onClick={handleClose} /></ButtonFlat>
-              : <ButtonFlat><RiFullscreenFill size='0.8em' onClick={toggleFullScreen} /></ButtonFlat>}
+            <div className={styles.wrapperButtonsPlayer}>
+              {!isStartFullScreen && (
+                <ButtonFlat>
+                  <RiFullscreenFill size='0.7em' onClick={toggleFullScreen} />
+                </ButtonFlat>
+              )}
+              <ButtonFlat>
+                <RiCloseFill onClick={handleClose} />
+              </ButtonFlat>
+            </div>
           </header>
           <div className={styles.wrapperButtons}>
             <ButtonFlat size='large' onClick={controls.handlePlay}>
