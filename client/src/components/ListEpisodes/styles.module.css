@@ -1,16 +1,8 @@
 .listEpisodesWrapper {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.listEpisodesWrapper > li {
-  flex-basis: 48.9%;
-}
-
-@media (max-width: 900px) {
-  .listEpisodesWrapper > li {
-    flex-basis: 100%;
-  }
+  display: grid;
+  grid-gap: 20px;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  padding-bottom: 20px;
 }
