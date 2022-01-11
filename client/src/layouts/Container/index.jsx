@@ -8,4 +8,13 @@ const Container = ({ children }) => {
   )
 }
 
+const ContainerCenter = ({ children }) => {
+  return (
+    <div className={styles.wrapperCenter}>
+      <div className={styles.childrenCenter}>{children}</div>
+    </div>
+  )
+}
+
+export { ContainerCenter }
 export default Container
