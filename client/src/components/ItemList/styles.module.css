@@ -4,5 +4,15 @@
   color: #fafafa;
   border: 2px solid #121212;
   border-radius: 8px;
+  user-select: none;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.05s ease-out;
+}
+
+.itemListWrapper:active {
+  transform: scale(0.9901);
+}
+
+.itemListWrapper:hover {
+  background-color: #121212;
 }
