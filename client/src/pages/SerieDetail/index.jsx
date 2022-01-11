@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import ListEpisodes from '../../components/ListEpisodes'
+import VideoPlayer from '../../components/VideoPlayer'
 import useSerie from '../../hooks/useSerie'
 import Container from '../../layouts/Container'
 import Header from '../../layouts/Header'
-import Separator from '../../layouts/Separator'
 import HeroMedia from '../../layouts/HeroMedia'
-import VideoPlayer from '../../components/VideoPlayer'
+import Separator from '../../layouts/Separator'
 
 const SerieDetail = () => {
   const { id } = useParams()
@@ -27,13 +28,16 @@ const SerieDetail = () => {
     <Container>
       <Header />
       {serie && (
-        <HeroMedia
-          id={id}
-          image={serie.images[0]}
-          title={serie.title}
-          synopsis={serie.synopsis}
-          buttons={buttonsHeroMedia}
-        />
+        <>
+          <HeroMedia
+            id={id}
+            image={serie.images[0]}
+            title={serie.title}
+            synopsis={serie.synopsis}
+            buttons={buttonsHeroMedia}
+          />
+          <ListEpisodes episodes={serie.episodes} />
+        </>
       )}
       {
         (serie && showVideoPlayer) && (
