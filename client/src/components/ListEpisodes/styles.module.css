@@ -6,3 +6,9 @@
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   padding-bottom: 20px;
 }
+
+.listEpisodesWrapper strong {
+  padding-right: 8px;
+  margin-right: 8px;
+  border-right: 3px solid #121212;
+}
