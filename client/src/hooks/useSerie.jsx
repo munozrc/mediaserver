@@ -17,9 +17,19 @@ export default function useSerie ({ id, initEpisode = 1 }) {
     setActiveSerie(serie)
   }, [media, id])
 
+  const changeEpisode = ({ id }) => {
+    const episode = activeSerie.episodes.find(episode => episode.id === id)
+    if (typeof episode !== 'undefined') {
+      setActiveEpisode(episode)
+      return true
+    }
+    return false
+  }
+
   return {
     serie: activeSerie,
     episode: activeEpsiode,
-    source: activeEpsiode?.sources[activeSource]
+    source: activeEpsiode?.sources[activeSource],
+    changeEpisode
   }
 }
