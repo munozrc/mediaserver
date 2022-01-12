@@ -12,3 +12,10 @@
   margin-right: 8px;
   border-right: 3px solid #121212;
 }
+
+@media (max-width: 500px) {
+  .listEpisodesWrapper {
+    grid-template-columns: 1fr;
+  }
+  
+}
