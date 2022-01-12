@@ -10,8 +10,13 @@ import Separator from '../../layouts/Separator'
 
 const SerieDetail = () => {
   const { id } = useParams()
-  const { serie, episode, source } = useSerie({ id })
+  const { serie, episode, source, changeEpisode } = useSerie({ id })
   const [showVideoPlayer, setShowVideoPlayer] = useState(false)
+
+  const handleChangeEpisode = ({ id }) => {
+    const validated = changeEpisode({ id })
+    validated && setShowVideoPlayer(true)
+  }
 
   const buttonsHeroMedia = [
     {
@@ -28,7 +33,7 @@ const SerieDetail = () => {
     return (
       <ContainerCenter>
         <VideoPlayer
-          source={{ title: `E${episode.id}: "${episode.title}"`, url: source.src }}
+          source={{ title: `S${serie.season}: E${episode.id} "${episode.title}"`, url: source.src }}
           subtitles={source.subtitles}
           handleClose={() => setShowVideoPlayer(false)}
         />
@@ -48,7 +53,7 @@ const SerieDetail = () => {
             synopsis={serie.synopsis}
             buttons={buttonsHeroMedia}
           />
-          <ListEpisodes episodes={serie.episodes} />
+          <ListEpisodes episodes={serie.episodes} onChangeEpisode={handleChangeEpisode} />
         </>
       )}
       <Separator />
