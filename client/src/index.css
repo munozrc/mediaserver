@@ -1,6 +1,6 @@
 @font-face {
   font-family: "LatoBlack";
-  src: local("LatoBlack"), url("../assets/fonts/Lato-Black.ttf") format("truetype");
+  src: local("LatoBlack"), url("./assets/fonts/Lato-Black.ttf") format("truetype");
   font-weight: bold;
 }
 
