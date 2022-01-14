@@ -40,7 +40,7 @@ const SerieDetail = () => {
           source={{ title: `S${serie.season}: E${episode.id} "${episode.title}"`, url: source.src }}
           subtitles={source.subtitles}
           handleClose={() => setShowVideoPlayer(false)}
-          handleSkipEpisode={handleSkipNextEpisode}
+          handleSkipEpisode={serie.episodes[serie.episodes.length - 1].id === episode.id ? undefined : handleSkipNextEpisode}
         />
       </ContainerCenter>
     )
