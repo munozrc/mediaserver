@@ -18,6 +18,10 @@ const SerieDetail = () => {
     validated && setShowVideoPlayer(true)
   }
 
+  const handleSkipNextEpisode = () => {
+    changeEpisode({ id: episode.id + 1 }) // is temporal solution
+  }
+
   const buttonsHeroMedia = [
     {
       onClick: () => setShowVideoPlayer(true),
@@ -36,6 +40,7 @@ const SerieDetail = () => {
           source={{ title: `S${serie.season}: E${episode.id} "${episode.title}"`, url: source.src }}
           subtitles={source.subtitles}
           handleClose={() => setShowVideoPlayer(false)}
+          handleSkipEpisode={handleSkipNextEpisode}
         />
       </ContainerCenter>
     )
