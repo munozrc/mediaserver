@@ -4,5 +4,8 @@ import MediaContext from '../context/mediaContext'
 export default function useMedia () {
   const { media } = useContext(MediaContext)
 
-  return { media }
+  return {
+    movies: media.movies,
+    series: media.series
+  }
 }
