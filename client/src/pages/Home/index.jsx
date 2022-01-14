@@ -1,17 +1,17 @@
+import MediaCard from '../../components/MediaCard'
 import useMedia from '../../hooks/useMedia'
 import Container from '../../layouts/Container'
 import GridContainer from '../../layouts/GridContainer'
 import Header from '../../layouts/Header'
-import MediaCard from '../../components/MediaCard'
 
 const Home = () => {
-  const { media } = useMedia()
+  const { movies, series } = useMedia()
   return (
     <Container>
       <Header />
       <GridContainer>
         {
-          media.movies.slice(0, 6).map(movie => (
+          movies.slice(0, 6).map(movie => (
             <MediaCard
               key={movie.id}
               id={movie.id}
@@ -21,7 +21,7 @@ const Home = () => {
           ))
         }
         {
-          media.series.slice(0, 6).map(serie => (
+          series.slice(0, 6).map(serie => (
             <MediaCard
               key={serie.id}
               id={serie.id}
