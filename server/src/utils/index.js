@@ -37,4 +37,4 @@ const normalizeSerie = (serie) => {
   return { ...serie, episodes }
 }
 
-export { normalizeMovie, normalizeSerie }
+module.exports = { normalizeMovie, normalizeSerie }

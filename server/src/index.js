@@ -1,5 +1,5 @@
-import app from './app.js'
-import { createConnection } from './database.js'
+const { createConnection } = require('./database.js')
+const app = require('./app.js')
 
 // Create connection Lowdb
 createConnection()

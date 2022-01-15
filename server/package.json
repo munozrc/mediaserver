@@ -2,7 +2,6 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
     "lint": "npm run lint",
@@ -16,6 +15,9 @@
   "dependencies": {
     "cors": "2.8.5",
     "express": "4.17.1",
-    "lowdb": "3.0.0"
+    "lowdb": "1.0.0"
+  },
+  "nodemonConfig": {
+    "ignore": ["./db.json"]
   }
 }

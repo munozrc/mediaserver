@@ -1,13 +1,11 @@
-import { Router } from 'express'
-import { statSync, createReadStream } from 'fs'
-import { getConnection } from '../database.js'
-import { normalizeMovie } from '../utils/index.js'
-
-const router = new Router()
+const { statSync, createReadStream } = require('fs')
+const { getConnection } = require('../database.js')
+const { normalizeMovie } = require('../utils/index')
+const router = require('express').Router()
 
 router.get('/subtitle', (req, res) => {
   const { id, source, lang } = req.query
-  const { movies } = getConnection().data
+  const movies = getConnection().get('movies').value()
 
   const movie = movies.find(movie => movie.id === id)
   if (typeof movie === 'undefined') return res.send('')
@@ -20,7 +18,7 @@ router.get('/subtitle', (req, res) => {
 
 router.get('/media', (req, res) => {
   const { movie, source } = req.query
-  const { movies } = getConnection().data
+  const movies = getConnection().get('movies').value()
 
   const findMovie = movies.find(({ id }) => id === movie)
   if (typeof findMovie === 'undefined') return res.send({ message: 'movie not found' })
@@ -59,10 +57,10 @@ router.get('/media', (req, res) => {
 })
 
 router.get('/', (_req, res) => {
-  const { movies } = getConnection().data
+  const movies = getConnection().get('movies').value()
   const normalizeMovies = movies.map(normalizeMovie)
 
   res.send({ movies: normalizeMovies })
 })
 
-export default router
+module.exports = router

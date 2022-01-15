@@ -1,13 +1,11 @@
-import { Router } from 'express'
-import { statSync, createReadStream } from 'fs'
-import { getConnection } from '../database.js'
-import { normalizeSerie } from '../utils/index.js'
-
-const router = new Router()
+const { statSync, createReadStream } = require('fs')
+const { getConnection } = require('../database')
+const { normalizeSerie } = require('../utils')
+const router = require('express').Router()
 
 router.get('/subtitle', (req, res) => {
   const { serie, episode, source, lang } = req.query
-  const { series } = getConnection().data
+  const series = getConnection().get('series').value()
 
   const findSerie = series.find(({ id }) => id === serie)
   if (typeof findSerie === 'undefined') return res.send({ message: 'serie not found' })
@@ -23,7 +21,7 @@ router.get('/subtitle', (req, res) => {
 
 router.get('/media', (req, res) => {
   const { serie, episode } = req.query
-  const { series } = getConnection().data
+  const series = getConnection().get('series').value()
 
   const findSerie = series.find(({ id }) => id === serie)
   if (typeof findSerie === 'undefined') return res.send({ message: 'serie not found' })
@@ -65,10 +63,10 @@ router.get('/media', (req, res) => {
 })
 
 router.get('/', (_req, res) => {
-  const { series } = getConnection().data
+  const series = getConnection().get('series').value()
   const normalizeSeries = series.map(normalizeSerie)
 
   res.send({ series: normalizeSeries })
 })
 
-export default router
+module.exports = router

@@ -1,16 +1,15 @@
-import { fileURLToPath } from 'url'
-import express from 'express'
-import moviesRouter from './controllers/movies.js'
-import seriesRouter from './controllers/series.js'
-import path from 'path'
-import cors from 'cors'
+const express = require('express')
+const cors = require('cors')
+const path = require('path')
+const moviesRouter = require('./controllers/movies')
+const seriesRouter = require('./controllers/series')
+const config = require('../config.json')
 
 // Initializations
 const app = express()
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Settings
-app.set('port', process.env.PORT || 3001)
+app.set('port', config.port ?? 3001)
 
 // middlewares
 app.use(cors())
@@ -20,9 +19,11 @@ app.use(express.json())
 // Have Node serve the files for our built React app
 app.use(express.static('../client/dist'))
 
+console.log(path.join(__dirname, '../../client/dist/index.html'))
+
 // Routes
 app.use('/api/movies', moviesRouter)
 app.use('/api/series', seriesRouter)
 app.get('/*', (_req, res) => { res.sendFile(path.join(__dirname, '../../client/dist/index.html')) })
 
-export default app
+module.exports = app
