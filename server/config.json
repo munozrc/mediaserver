@@ -1,8 +1,6 @@
 {
-  "media": [
-    "D:\\Movies",
-    "D:\\Series"
-  ],
+  "movies": ["D:\\Movies"],
+  "series": ["D:\\Series"],
   "port": 3001,
   "dbName": "db.json"
 }
