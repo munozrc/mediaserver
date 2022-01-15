@@ -7,7 +7,7 @@
   padding-bottom: 20px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
   .wrapper {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
