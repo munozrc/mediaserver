@@ -66,7 +66,7 @@ router.get('/', (_req, res) => {
   const series = getConnection().get('series').value()
   const normalizeSeries = series.map(normalizeSerie)
 
-  res.send({ series: normalizeSeries })
+  res.send({ series: normalizeSeries.reverse() })
 })
 
 module.exports = router

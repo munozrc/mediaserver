@@ -60,7 +60,7 @@ router.get('/', (_req, res) => {
   const movies = getConnection().get('movies').value()
   const normalizeMovies = movies.map(normalizeMovie)
 
-  res.send({ movies: normalizeMovies })
+  res.send({ movies: normalizeMovies.reverse() })
 })
 
 module.exports = router
