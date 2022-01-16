@@ -1,8 +1,8 @@
 const { readdirSync, writeFileSync, statSync } = require('node:fs')
 const { join, parse } = require('node:path')
 const { movies } = require('../../config.json')
+const { v4: uuidv4 } = require('uuid')
 const { getConnection } = require('../database')
-// const { v4: uuidv4 } = require('uuid')
 
 const readMetadataMovies = () => {
   const db = getConnection().get('movies').value()
@@ -39,8 +39,10 @@ const readMetadataMovies = () => {
 }
 
 const setMetadataMovies = (movie) => {
+  if (typeof movie.id !== 'undefined') return movie
+
   const metadata = {
-    id: 'asdasd', // uuidv4()
+    id: uuidv4(),
     path: movie.path,
     title: movie.title,
     genre: [],
@@ -50,8 +52,6 @@ const setMetadataMovies = (movie) => {
     images: [],
     sources: []
   }
-
-  if (typeof movie.id !== 'undefined') return movie
 
   if (typeof movie.sources !== 'undefined') {
     metadata.sources = movie.sources
