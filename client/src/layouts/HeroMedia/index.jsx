@@ -1,13 +1,14 @@
-import { RiPlayFill, RiCloseFill } from 'react-icons/ri'
+import { RiCloseFill, RiPlayFill } from 'react-icons/ri'
+import defaultImage from '../../assets/default-hero.png'
 import Button from '../../components/Button'
 import LinkButton from '../../components/LinkButton'
 import styles from './styles.module.css'
 
-const HeroMedia = ({ image = '', title = '', synopsis = '', id = '', buttons = [] }) => {
+const HeroMedia = ({ image, title = '', synopsis = '', id = '', buttons = [] }) => {
   return (
     <section className={styles.section}>
       <header className={styles.hero}>
-        <img className={styles.heroImage} src={image} alt={`${id}-hero-image`} />
+        <img className={styles.heroImage} src={image ?? defaultImage} alt={`${id}-hero-image`} />
         <div className={styles.heroInfo}>
           <header className={styles.heroHeader}>
             <LinkButton to='/'><RiCloseFill size='1.8em' /></LinkButton>
