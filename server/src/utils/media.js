@@ -1,17 +1,17 @@
-const { readdirSync, writeFileSync, statSync } = require('node:fs')
+const { readdirSync, statSync } = require('node:fs')
 const { join, parse } = require('node:path')
 const { movies } = require('../../config.json')
 const { v4: uuidv4 } = require('uuid')
 const { getConnection } = require('../database')
 
 const readMetadataMovies = () => {
-  const db = getConnection().get('movies').value()
+  const db = getConnection().get('movies')
 
   const movieDirs = movies.flatMap((path) => readdirSync(path).map(file => {
     const pathParent = join(path, file)
-    const dbMovie = db.find(movie => movie.path === pathParent)
+    const dbMovie = db.find({ path: pathParent }).value()
 
-    if (typeof dbMovie !== 'undefined') return dbMovie
+    if (typeof dbMovie !== 'undefined') return null
 
     if (!isDirectory({ path, file })) {
       if (!isMediaFile({ file })) return null
@@ -35,7 +35,16 @@ const readMetadataMovies = () => {
   })).filter(file => file !== null)
 
   const metadata = movieDirs.map(setMetadataMovies).filter(movies => movies !== null)
-  writeFileSync(`${process.cwd()}/test.json`, JSON.stringify(metadata))
+
+  metadata.forEach(movie => {
+    const title = getConnection().get('movies')
+      .push(movie)
+      .write()
+      .title
+    console.log({ movie: title })
+  })
+
+  // writeFileSync(`${process.cwd()}/test.json`, JSON.stringify(metadata))
 }
 
 const setMetadataMovies = (movie) => {
