@@ -25,7 +25,6 @@ export default function useControls () {
   }
 
   const handleSubtitles = (value = -1) => {
-    console.log({ value })
     const tracks = ref.current.wrapper.children[0].textTracks
     for (let i = 0; i < tracks.length; i++) {
       if (i === value) tracks[i].mode = 'showing'
