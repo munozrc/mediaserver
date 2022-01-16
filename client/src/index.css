@@ -21,17 +21,8 @@ body {
   background-color: #000;
 }
 
-button {
-  color: #fafafa;
-  background: none;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-}
-
-a {
-  text-decoration: none;
+body {
+  overflow-y: scroll;
 }
 
 body::-webkit-scrollbar {
@@ -49,6 +40,19 @@ body::-webkit-scrollbar-track {
   border: 0 #fff;
   border-radius: 0;
   background: rgba(0,0,0,.12);;
+}
+
+button {
+  color: #fafafa;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+}
+
+a {
+  text-decoration: none;
 }
 
 li {
