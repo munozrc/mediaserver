@@ -15,9 +15,13 @@
   "dependencies": {
     "cors": "2.8.5",
     "express": "4.17.1",
-    "lowdb": "1.0.0"
+    "lowdb": "1.0.0",
+    "uuid": "8.3.2"
   },
   "nodemonConfig": {
-    "ignore": ["./db.json"]
+    "ignore": [
+      "./db.json",
+      "./test.json"
+    ]
   }
 }
