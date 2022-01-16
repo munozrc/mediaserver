@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 
 export default function useControls () {
   const ref = useRef(null)
-  const [values, setValues] = useState({ loaded: 0, played: 0, duration: 0, volume: 1 })
+  const [values, setValues] = useState({ loaded: 0, played: 0, duration: 0, volume: 1, subtitles: -1 })
   const [isPlaying, setPlaying] = useState(false)
   const [counterFocus, setCounterFocus] = useState(0)
 
@@ -24,6 +24,16 @@ export default function useControls () {
     handleResetCounter()
   }
 
+  const handleSubtitles = (value = -1) => {
+    console.log({ value })
+    const tracks = ref.current.wrapper.children[0].textTracks
+    for (let i = 0; i < tracks.length; i++) {
+      if (i === value) tracks[i].mode = 'showing'
+      else tracks[i].mode = 'hidden'
+    }
+    setValues((prev) => ({ ...prev, subtitles: value }))
+  }
+
   return {
     ref,
     values,
@@ -34,6 +44,7 @@ export default function useControls () {
     handleDurationVideo,
     handleChangeSeek,
     handleProgress,
-    handlePause
+    handlePause,
+    handleSubtitles
   }
 }

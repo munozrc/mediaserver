@@ -1,4 +1,4 @@
-import { RiCloseFill, RiFullscreenFill, RiPauseCircleFill, RiPlayFill } from 'react-icons/ri'
+import { RiClosedCaptioningFill, RiClosedCaptioningLine, RiCloseFill, RiFullscreenFill, RiPauseCircleFill, RiPlayFill } from 'react-icons/ri'
 import ReactPlayer from 'react-player'
 import ButtonFlat from './components/ButtonFlat'
 import ButtonSkip from './components/ButtonSkip'
@@ -41,13 +41,18 @@ const VideoPlayer = ({ source, subtitles, handleClose, handleSkipEpisode }) => {
           <header className={styles.header}>
             <h3 className={styles.titleSource}>{source.title}</h3>
             <div className={styles.wrapperButtonsPlayer}>
+              <ButtonFlat onClick={() => controls.handleSubtitles(controls.values.subtitles === -1 ? 0 : -1)}>
+                {controls.values.subtitles !== -1
+                  ? <RiClosedCaptioningFill size='0.7em' />
+                  : <RiClosedCaptioningLine size='0.7em' />}
+              </ButtonFlat>
               {!isStartFullScreen && (
-                <ButtonFlat>
-                  <RiFullscreenFill size='0.7em' onClick={toggleFullScreen} />
+                <ButtonFlat onClick={toggleFullScreen}>
+                  <RiFullscreenFill size='0.7em' />
                 </ButtonFlat>
               )}
-              <ButtonFlat>
-                <RiCloseFill onClick={handleClose} />
+              <ButtonFlat onClick={handleClose}>
+                <RiCloseFill />
               </ButtonFlat>
             </div>
           </header>
