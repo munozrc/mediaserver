@@ -72,7 +72,9 @@ const setMetadataMovies = (movie) => {
       // When path is Directory
       const pathChild = join(metadata.path, file)
       const childrenDirs = readdirSync(pathChild)
-      const sourcesChild = childrenDirs.map((child) => {
+
+      // Return all resources for child folders
+      return childrenDirs.map((child) => {
         if (isDirectory({ path: pathChild, file: child })) return null
         if (!isMediaFile({ file: child })) return null
 
@@ -82,7 +84,6 @@ const setMetadataMovies = (movie) => {
           subtitles
         }
       })
-      return sourcesChild
     }).filter(source => source !== null)
 
     // Return null when no sources
